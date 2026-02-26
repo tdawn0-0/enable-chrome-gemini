@@ -4,32 +4,23 @@ Researched and scripted by [lcandy2](https://twitter.com/vanillaCitron).
 
 [![Twitter](https://img.shields.io/twitter/follow/vanillaCitron)](https://twitter.com/vanillaCitron)
 
-
 English | [中文](README.zh.md)
 
 Enable Gemini in Chrome, AI Powered History search, and DevTools AI Innovations in Google Chrome—without cleaning data or reinstalling.
 
 <img width="512" alt="Google Chrome Gemini in Chrome" src="https://github.com/user-attachments/assets/a88c56a7-f20b-432a-926c-0184194225b4" />
 
-Tiny Python helper that enables Chrome's built-in AI features by patching your local profile data (`variations_country`, `variations_permanent_consistency_country`, and `is_glic_eligible`)—no browser flags required.
+Tiny Bun + TypeScript helper that enables Chrome's built-in AI features by patching your local profile data (`variations_country`, `variations_permanent_consistency_country`, and `is_glic_eligible`)—no browser flags required.
 
 ## ✅ Requirements
-- Python `3.13+` (see `.python-version` / `pyproject.toml`)
+- [Bun](https://bun.sh/) `1.1+`
 - Google Chrome installed (Stable/Canary/Dev/Beta)
 
-## ⚡️ Quick Start (uv)
-1. Install uv (once):
-   - Windows: `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
-   - macOS & Linux: `curl -LsSf https://astral.sh/uv/install.sh | sh`
-   - See [uv installation docs](https://docs.astral.sh/uv/getting-started/installation/) for more options.
-2. Install deps (creates venv automatically): `uv sync`.
-3. Run the script: `uv run main.py`.
+## ⚡️ Quick Start
+1. Install Bun (once): [bun.sh/docs/installation](https://bun.sh/docs/installation)
+2. Install dependencies: `bun install`
+3. Run the script: `bun run start`
 4. Chrome will close while patching; after it restarts, press Enter to finish.
-
-## ⚡️ Quick Start (pip)
-1. Create and activate a venv.
-2. Install deps: `python -m pip install psutil`.
-3. Run: `python main.py`.
 
 ## 🔧 What Happens
 - Finds Chrome user data for Stable/Canary/Dev/Beta on Windows, macOS, and Linux.

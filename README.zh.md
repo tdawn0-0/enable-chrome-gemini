@@ -10,25 +10,17 @@
 
 <img width="512" alt="Google Chrome Gemini in Chrome" src="https://github.com/user-attachments/assets/a88c56a7-f20b-432a-926c-0184194225b4" />
 
-轻量 Python 脚本，通过修改本地 Chrome 配置（`variations_country`、`variations_permanent_consistency_country` 和 `is_glic_eligible`）启用浏览器内置 AI 功能，无需额外开关。
+轻量 Bun + TypeScript 脚本，通过修改本地 Chrome 配置（`variations_country`、`variations_permanent_consistency_country` 和 `is_glic_eligible`）启用浏览器内置 AI 功能，无需额外开关。
 
 ## ✅ 环境要求
-- Python `3.13+`（见 `.python-version` / `pyproject.toml`）
+- [Bun](https://bun.sh/) `1.1+`
 - 已安装 Google Chrome（Stable/Canary/Dev/Beta）
 
-## ⚡️ 快速开始（uv）
-1. 安装 uv（一次性）：
-   - Windows: `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
-   - macOS & Linux: `curl -LsSf https://astral.sh/uv/install.sh | sh`
-   - 更多安装方式请参考 [uv 安装文档](https://docs.astral.sh/uv/getting-started/installation/)。
-2. 安装依赖（自动创建虚拟环境）：`uv sync`。
-3. 运行脚本：`uv run main.py`。
+## ⚡️ 快速开始
+1. 安装 Bun（一次性）：[bun.sh/docs/installation](https://bun.sh/docs/installation)
+2. 安装依赖：`bun install`
+3. 运行脚本：`bun run start`
 4. 补丁过程中 Chrome 会被关闭；重启后根据提示按 Enter 结束。
-
-## ⚡️ 快速开始（pip）
-1. 创建并激活虚拟环境。
-2. 安装依赖：`python -m pip install psutil`。
-3. 运行：`python main.py`。
 
 ## 🔧 做了什么
 - 自动定位 Windows / macOS / Linux 上的 Chrome Stable / Canary / Dev / Beta 用户数据目录。
