@@ -22,6 +22,11 @@ Tiny Bun + TypeScript helper that enables Chrome's built-in AI features by patch
 3. Run the script: `bun run start`
 4. Chrome will close while patching; after it restarts, press Enter to finish.
 
+## 📦 Download Executable (No Dev Setup)
+- Open [GitHub Releases](https://github.com/lcandy2/enable-chrome-ai/releases).
+- Download the file that matches your OS (`linux`, `darwin`, or `windows`).
+- On macOS/Linux, run `chmod +x <file>` once, then execute it directly.
+
 ## 🔧 What Happens
 - Finds Chrome user data for Stable/Canary/Dev/Beta on Windows, macOS, and Linux.
 - Kills top-level Chrome processes to avoid file locks, then brings them back.

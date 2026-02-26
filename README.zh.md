@@ -22,6 +22,11 @@
 3. 运行脚本：`bun run start`
 4. 补丁过程中 Chrome 会被关闭；重启后根据提示按 Enter 结束。
 
+## 📦 下载可执行文件（无需开发环境）
+- 打开 [GitHub Releases](https://github.com/lcandy2/enable-chrome-ai/releases)。
+- 下载与你系统对应的文件（`linux`、`darwin`、`windows`）。
+- macOS/Linux 首次运行先执行 `chmod +x <文件名>`，然后直接运行。
+
 ## 🔧 做了什么
 - 自动定位 Windows / macOS / Linux 上的 Chrome Stable / Canary / Dev / Beta 用户数据目录。
 - 关闭顶层 Chrome 进程以避免文件锁，再在补丁后恢复。

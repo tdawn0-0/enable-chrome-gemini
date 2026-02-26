@@ -1,0 +1,85 @@
+name: Build Single-File Executables
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    name: Build (${{ matrix.target }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - bun-linux-x64
+          - bun-linux-arm64
+          - bun-windows-x64
+          - bun-darwin-x64
+          - bun-darwin-arm64
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build executable
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+
+          APP_NAME="enable-chrome-ai"
+          TARGET="${{ matrix.target }}"
+          EXT=""
+          if [[ "$TARGET" == bun-windows-* ]]; then
+            EXT=".exe"
+          fi
+
+          OUTFILE="dist/${APP_NAME}-${TARGET}${EXT}"
+
+          bun build ./src/main.ts \
+            --compile \
+            --target="$TARGET" \
+            --minify \
+            --sourcemap \
+            --bytecode \
+            --outfile "$OUTFILE"
+
+          sha256sum "$OUTFILE" > "${OUTFILE}.sha256"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: binary-${{ matrix.target }}
+          path: |
+            dist/*
+
+  release:
+    name: Attach to GitHub Release
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Publish release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
